@@ -1,2 +1,436 @@
-# Ehsan.yamal
-Yamal
+mixed-port: 7890
+ipv6: true
+allow-lan: true
+mode: rule
+log-level: info
+keepalive: 25
+keep-alive-idle: 10
+keep-alive-interval: 15
+unified-delay: false
+geo-auto-update: true
+geo-update-interval: 168
+external-controller: '127.0.0.1:9090'
+secret: 'Hpp@19921992'
+external-ui: ui
+# external-ui-url: 'https://github.com/haishanh/yacd/archive/gh-pages.zip'
+external-ui-url: 'https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip'
+external-controller-cors:
+  allow-origins: ['*']
+  allow-private-network: true
+profile:
+  store-selected: true
+  store-fake-ip: true
+hosts: {}
+dns:
+  enable: true
+  listen: 0.0.0.0:1053
+  ipv6: false
+  respect-rules: true
+  use-hosts: true
+  use-system-hosts: false
+  nameserver:
+    - 'https://1.1.1.1/dns-query'
+    - 'https://8.8.8.8/dns-query'
+    - 'https://dns.quad9.net/dns-query'
+  proxy-server-nameserver:
+    - '178.22.122.100' # شکن
+    - '185.51.200.2'   # شکن
+    - '10.202.10.10'   # رادار
+    - '10.202.10.11'   # رادار
+  nameserver-policy:
+    'domain:+.ir': [proxy-server-nameserver]
+    'all': [nameserver]
+  fallback-filter:
+  geoip: true
+  geoip-code: IR
+  ipcidr:
+    - '240.0.0.0/4'
+  geosite:
+    - 'cn'
+  domain:
+    - '+.ir'
+tun:
+  enable: true
+  stack: gvisor
+  auto-route: true
+  strict-route: true
+  auto-detect-interface: true
+  dns-hijack:
+  - 'tcp://any:53'
+  - 'udp://any:53'
+  mtu: 1330
+sniffer:
+  enable: true
+  force-dns-mapping: true
+  parse-pure-ip: true
+  override-destination: false
+  sniff:
+    HTTP:
+      ports: [80, 8080, 8880, 2052, 2082, 2086, 2095]
+    TLS:
+      ports: [443, 8443, 2053, 2083, 2087, 2096]
+    QUIC:
+      ports: [443, 8443]
+      
+proxies:
+  - name: "🇬🇧 ehsan"
+    type: ss
+    server: series-a1.samanehha.co
+    port: 443
+    cipher: chacha20-ietf-poly1305
+    password: W74XFALLLuw6m5IA
+    udp: true
+
+  - name: "🇬🇧 ehsan-1"
+    type: ss
+    server: series-a2.samanehha.co
+    port: 443
+    cipher: chacha20-ietf-poly1305
+    password: W74XFALLLuw6m5IA
+    udp: true
+
+  - name: "🇦🇹 ehsan"
+    type: trojan
+    server: 185.126.236.44
+    port: 443
+    password: BSs5IAVMQdYuykvDsOYZoa6gNPSGBjAbLL
+    sni: www.mesaly.click
+    skip-cert-verify: true
+    udp: true
+
+  - name: "🇸🇪 ehsan"
+    type: vless
+    server: 62.60.251.131
+    port: 45656
+    uuid: ff118a1e-40b7-4bc8-82f9-2424d802a697
+    network: tcp
+    tls: false
+    udp: true
+
+  - name: "🇩🇪 ehsan"
+    type: vless
+    server: 91.107.191.12
+    port: 29376
+    uuid: 03bc875d-0d8e-49b6-9094-89a8159e65ee
+    network: tcp
+    tls: false
+    udp: true
+
+  - name: "🇩🇪 ehsan-1"
+    type: vless
+    server: 152.233.35.228
+    port: 8443
+    uuid: 394f6981-a782-4779-9a85-e6cf22935d93
+    network: tcp
+    tls: true
+    servername: de1.fromblancwithlove.com
+    skip-cert-verify: true
+    udp: true
+
+  # ================= NEW PROXIES =================
+
+  - name: "🇺🇸 ehsan"
+    type: hysteria2
+    server: 155.248.209.237
+    port: 33333
+    password: "bce6c821-200d-421f-bf3d-7159e5246ea0"
+    skip-cert-verify: true
+
+  - name: "🇩🇪 ehsan-hy2"
+    type: hysteria2
+    server: 130.61.50.75
+    port: 6443
+    password: "zhangyang"
+    sni: dash.cloudflare.com
+    skip-cert-verify: true
+
+  - name: "🇨🇴 ehsan"
+    type: ss
+    server: 154.223.16.41
+    port: 4444
+    cipher: aes-256-gcm
+    password: "pKEW8JPByTVTLtM"
+    udp: true
+
+  - name: "🇯🇵 ehsan"
+    type: ss
+    server: 103.106.228.175
+    port: 8009
+    cipher: aes-256-gcm
+    password: "XKFKl2rULjIp74"
+    udp: true
+    
+  - name: "🇸🇦 ehsan"
+    type: ss
+    server: 156.244.8.155
+    port: 5004
+    cipher: aes-256-gcm
+    password: "g5MeD6Ft3CWlJId"
+    udp: true
+
+  - name: "🇫🇮 ehsan"
+    type: ss
+    server: 193.47.60.186
+    port: 28687
+    cipher: chacha20-ietf-poly1305
+    password: "yKVMoB3AwiTEznpnoq2FYR"
+    udp: true
+
+  - name: "🇳🇱 ehsan"
+    type: ss
+    server: 82.38.31.186
+    port: 8080
+    cipher: chacha20-ietf-poly1305
+    password: "k1dBOmOB4oqi7Ump37a1bQ"
+    udp: true
+
+  - name: "🇬🇧 ehsan-2"
+    type: ss
+    server: admin.c1.webramz.co
+    port: 443
+    cipher: chacha20-ietf-poly1305
+    password: "W74XFALLLuw6m5IA"
+    udp: true
+
+  - name: "🇬🇧 ehsan-3"
+    type: ss
+    server: admin.c1.havij.co
+    port: 443
+    cipher: chacha20-ietf-poly1305
+    password: "1kVr0KATIJI7mwOF"
+    udp: true
+
+  - name: "🇫🇷 ehsan"
+    type: ss
+    server: de5.taskflowhub.org
+    port: 2083
+    cipher: aes-256-gcm
+    password: "7NuB0Y5m3aNzkKMKlFoMwkiajsu6F36c9ok4VKEZnB4="
+    udp: true
+
+  - name: "🇩🇪 ehsan"
+    type: trojan
+    server: 185.137.157.254
+    port: 443
+    password: "hxn2jK9Uzezogua0oHuq9Y8viN=UCe.2Jd"
+    sni: www.directorypipeline.click
+    skip-cert-verify: true
+    udp: true
+
+  - name: "🇩🇪 ehsan (VLESS)"
+    type: vless
+    server: 152.233.35.228
+    port: 8443
+    uuid: 394f6981-a782-4779-9a85-e6cf22935d93
+    network: tcp
+    tls: true
+    servername: de1.fromblancwithlove.com
+    skip-cert-verify: false
+    udp: true
+
+  - name: "🇬🇧 ehsan (Reality)"
+    type: vless
+    server: 54.36.162.217
+    port: 443
+    uuid: 44b3ee72-cffb-4d66-ab7c-3138b9bdeeef
+    network: tcp
+    tls: true
+    udp: true
+    flow: xtls-rprx-vision
+    servername: speedtest.net
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: upTVUrc_t7xF1ULni8pHRDhRES1sT4BDm1r8rugTzyQ
+      short-id: ff815f58c7e77aa9
+
+  - name: "🇮🇹 ehsan (gRPC)"
+    type: vless
+    server: sca16.myfymain.com
+    port: 8880
+    uuid: 8dc7722c-2767-4eea-a28b-2f8daacc07e3
+    network: grpc
+    tls: false
+    udp: true
+    grpc-opts:
+      grpc-service-name: ""
+
+  - name: "🇫🇷 ehsan (VMess)"
+    type: vmess
+    server: node-fr.connectsuite.org
+    port: 2053
+    uuid: 2f4234f9-8f33-4c7f-952f-565ffa5f5fb7
+    alterId: 0
+    cipher: auto
+    network: tcp
+    tls: true
+    servername: node-fr.connectsuite.org
+    skip-cert-verify: false
+    udp: true
+
+  - name: "🇪🇸 ehsan (VMess)"
+    type: vmess
+    server: 85.90.217.42
+    port: 22324
+    uuid: 04621bae-ab36-11ec-b909-0242ac120002
+    alterId: 0
+    cipher: auto
+    network: tcp
+    tls: false
+    udp: true
+
+  - name: "🇫🇮 ehsan (WS)"
+    type: vless
+    server: 141.193.213.10
+    port: 443
+    uuid: fc965ad9-bdd7-4815-ad71-b39ec5972dc1
+    network: ws
+    tls: true
+    servername: octopusss4.com
+    skip-cert-verify: false
+    client-fingerprint: chrome
+    udp: true
+    ws-opts:
+      path: "/tsghdws"
+      headers:
+        Host: octopusss4.com
+
+#warp
+#Arista
+#Rayan
+#BPB
+#Game
+
+proxy-groups:
+  - name: "💚خانه"
+    type: select
+    proxies: 
+      - "اتصال❤️خودکار"
+      - "🇺🇸 ehsanvpns"
+      - "🇩🇪 ehsanvpns-hy2"
+      - "🇬🇧 ehsanvpns"
+      - "🇬🇧 ehsan-1"
+      - "🇸🇪 ehsanvpns"
+      - "🇩🇪 ehsanvpns"
+      - "🇬🇧 ehsan-2"
+      - "🇬🇧 ehsan-3"
+      - "🇫🇷 ehsan"
+      - "🇩🇪 ehsan (VLESS)"
+      - "🇬🇧 ehsan (Reality)"
+      - "🇮🇹 ehsan (gRPC)"
+      - "🇫🇷 ehsan (VMess)"
+      - "🇪🇸 ehsan (VMess)"
+      - "🇫🇮 ehsan (WS)"
+      - "🇨🇴 ehsan"
+      - "🇯🇵 ehsan"
+      - "🇳🇱 ehsan"
+      - "🇩🇪 ehsanvpns-1"
+      - "🇦🇹 ehsanvpns"
+      - "🇸🇦 ehsan"
+      - "🇫🇮 ehsan"
+      - "🇩🇪 ehsan"
+
+  - name: "اتصال❤️خودکار"
+    type: url-test
+    url: "http://www.google.com/generate_204"
+    interval: 120
+    tolerance: 100
+    proxies:
+      - "🇺🇸 ehsanvpns"
+      - "🇩🇪 ehsanvpns-hy2"
+      - "🇬🇧 ehsanvpns"
+      - "🇬🇧 ehsan-1"
+      - "🇸🇪 ehsanvpns"
+      - "🇩🇪 ehsanvpns"
+      - "🇬🇧 ehsan-2"
+      - "🇬🇧 ehsan-3"
+      - "🇫🇷 ehsan"
+      - "🇩🇪 ehsan (VLESS)"
+      - "🇬🇧 ehsan (Reality)"
+      - "🇮🇹 ehsan (gRPC)"
+      - "🇫🇷 ehsan (VMess)"
+      - "🇪🇸 ehsan (VMess)"
+      - "🇫🇮 ehsan (WS)"
+      - "🇨🇴 ehsan"
+      - "🇯🇵 ehsan"
+      - "🇳🇱 ehsan"
+      - "🇩🇪 ehsanvpns-1"
+      - "🇦🇹 ehsanvpns"
+      - "🇸🇦 ehsan"
+      - "🇫🇮 ehsan"
+      - "🇩🇪 ehsan"
+
+rule-providers:
+  malware:
+    type: http
+    format: text
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware.txt"
+    path: "./ruleset/malware.txt"
+    interval: 86400
+  malware-cidr:
+    type: http
+    format: text
+    behavior: ipcidr
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/malware-ip.txt"
+    path: "./ruleset/malware-cidr.txt"
+    interval: 86400
+  phishing:
+    type: http
+    format: text
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/phishing.txt"
+    path: "./ruleset/phishing.txt"
+    interval: 86400
+  phishing-cidr:
+    type: http
+    format: text
+    behavior: ipcidr
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/phishing-ip.txt"
+    path: "./ruleset/phishing-cidr.txt"
+    interval: 86400
+  cryptominers:
+    type: http
+    format: text
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/cryptominers.txt"
+    path: "./ruleset/cryptominers.txt"
+    interval: 86400
+  category-ads-all:
+    type: http
+    format: text
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/category-ads-all.txt"
+    path: "./ruleset/category-ads-all.txt"
+    interval: 86400
+  ir:
+    type: http
+    format: text
+    behavior: domain
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ir.txt"
+    path: "./ruleset/ir.txt"
+    interval: 86400
+  ir-cidr:
+    type: http
+    format: text
+    behavior: ipcidr
+    url: "https://raw.githubusercontent.com/Chocolate4U/Iran-clash-rules/release/ircidr.txt"
+    path: "./ruleset/ir-cidr.txt"
+    interval: 86400
+
+rules:
+  - RULE-SET,malware,REJECT
+  - RULE-SET,phishing,REJECT
+  - RULE-SET,cryptominers,REJECT
+  - RULE-SET,category-ads-all,REJECT
+  - RULE-SET,malware-cidr,REJECT
+  - RULE-SET,phishing-cidr,REJECT
+  - GEOIP,IR,DIRECT
+  - RULE-SET,ir,DIRECT
+  - RULE-SET,ir-cidr,DIRECT
+  - MATCH,💚خانه
+
+ntp:
+  enable: true
+  server: time.cloudflare.com
+  port: 123
+  interval: 30
